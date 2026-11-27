@@ -34,7 +34,8 @@ img { display: block; max-width: 100%; }
 .site-frame[data-view="services"] .brand-button img,
 .site-frame[data-view="gallery"] .brand-button img,
 .site-frame[data-view="contact"] .brand-button img { filter: invert(1); }
-.site-frame[data-view="locations"] .brand-button img { filter: invert(1) drop-shadow(0 1px 5px rgba(0,0,0,.55)); }
+.site-frame[data-view="locations"] .brand-button { height: auto; aspect-ratio: 1 / 1; padding: 7%; border-radius: 50%; background: rgba(250,249,244,.95); box-shadow: 0 6px 22px rgba(10,15,11,.35); }
+.site-frame[data-view="locations"] .brand-button img { inset: 7%; width: 86%; height: 86%; filter: none; }
 .tab-list { width: max-content; max-width: 100%; display: flex; justify-self: center; align-items: center; gap: clamp(2px, .55vw, 9px); padding: 5px; border: 1px solid rgba(32,34,31,.08); border-radius: 999px; background: rgba(250,249,244,.84); box-shadow: 0 8px 24px rgba(30,34,28,.07); backdrop-filter: blur(14px); }
 .tab-link { position: relative; min-height: 42px; padding: 9px 13px; border: 0; border-radius: 999px; background: transparent; color: #565a53; font-size: 12px; white-space: nowrap; cursor: pointer; transition: background .2s ease, color .2s ease, transform .2s ease; }
 .tab-link:hover { color: var(--ink); background: #f0f0e9; }

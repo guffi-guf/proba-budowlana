@@ -81,7 +81,7 @@ if (year) year.textContent = String(new Date().getFullYear());
 
 // Respect "reduce motion": show a still frame of the hero video instead of playing it.
 const heroVideo = document.querySelector(".hero-video");
-const HERO_VIDEO_SPEED = 0.65; // 1 = original speed; lower is slower.
+const HERO_VIDEO_SPEED = 1; // 1 = original speed; lower is slower.
 if (heroVideo) {
   heroVideo.defaultPlaybackRate = HERO_VIDEO_SPEED;
   heroVideo.playbackRate = HERO_VIDEO_SPEED;
