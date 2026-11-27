@@ -21,8 +21,13 @@ function activateView(view, focusPanel = false) {
     panel.classList.toggle("is-active", selected);
   });
 
+  const frame = document.querySelector(".site-frame");
+  if (frame) frame.dataset.view = view;
+
   if (focusPanel) selectedPanel.focus({ preventScroll: true });
 }
+
+activateView("home");
 
 document.querySelectorAll("[data-view]").forEach((control) => {
   control.addEventListener("click", () => activateView(control.dataset.view));
