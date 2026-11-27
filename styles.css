@@ -1,5 +1,5 @@
 ﻿:root {
-  --map-top: -170px;
+  --map-top: -170px; --map-left: 0px;
   --loc-left: clamp(24px, 5vw, 72px);
   --loc-pad: clamp(23px, 3vw, 38px);
   --hdr-pad: clamp(24px, 4vw, 54px);
@@ -128,7 +128,7 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 .locations-panel { padding: 0; background: #3b4740; color: var(--ink); }
 .location-card { position: absolute; inset: 0; overflow: hidden; background: #3b4740; }
 /* The embed draws its own white address card in its top-left corner; push that corner out of view. */
-.location-card iframe { position: absolute; top: var(--map-top); left: 0; width: 100%; height: calc(100% - var(--map-top)); border: 0; }
+.location-card iframe { position: absolute; top: var(--map-top); left: calc(var(--map-left) * -1); width: calc(100% + var(--map-left)); height: calc(100% - var(--map-top)); border: 0; }
 .locations-copy { position: absolute; z-index: 2; top: 50%; left: clamp(24px, 5vw, 72px); width: min(380px, 39%); padding: clamp(23px, 3vw, 38px); border: 1px solid rgba(255,255,255,.65); border-radius: 8px 8px 54px 8px; background: rgba(250,249,244,.94); box-shadow: 0 18px 58px rgba(23,30,25,.2); transform: translateY(-42%); }
 .locations-panel .eyebrow { color: #666a60; }
 .locations-copy h1 { margin: 0 0 18px; color: #20221f; font-size: clamp(44px, 5vw, 66px); }
@@ -136,7 +136,7 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 .locations-copy > p { margin: 0 0 9px; color: var(--ink-soft); font-size: 13px; }
 .locations-copy > p strong { color: #20221f; font-weight: 650; }
 .locations-copy > small { display: block; margin: 0 0 19px; color: #72766e; font-size: 10px; }
-.map-pin-label { position: absolute; z-index: 1; left: 50%; top: calc(50% + var(--map-top) / 2 + 11px); transform: translateX(-50%); padding: 5px 12px; border-radius: 8px; background: rgba(250,249,244,.96); color: #20221f; font-size: 12px; font-weight: 600; white-space: nowrap; box-shadow: 0 4px 16px rgba(10,15,11,.3); pointer-events: none; }
+.map-pin-label { position: absolute; z-index: 1; left: calc(50% - var(--map-left) / 2); top: calc(50% + var(--map-top) / 2 + 11px); transform: translateX(-50%); padding: 5px 12px; border-radius: 8px; background: rgba(250,249,244,.96); color: #20221f; font-size: 12px; font-weight: 600; white-space: nowrap; box-shadow: 0 4px 16px rgba(10,15,11,.3); pointer-events: none; }
 .map-caption { position: absolute; z-index: 2; right: 26px; bottom: 66px; min-width: 240px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 10px; padding: 14px 17px; border: 1px solid rgba(255,255,255,.8); border-radius: 6px 6px 28px 6px; background: rgba(250,249,244,.93); color: var(--ink); box-shadow: 0 10px 34px rgba(23,30,25,.16); backdrop-filter: blur(10px); }
 .map-caption > span { grid-column: 1 / -1; color: #85897f; font-size: 8px; font-weight: 700; letter-spacing: .14em; }
 .map-caption strong { grid-column: 1; grid-row: 2; font-size: 14px; font-weight: 600; }
@@ -324,7 +324,7 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
   .locations-copy { padding-inline: 22px; }
 }
 @media (min-width: 641px) and (max-width: 1199px) {
-  :root { --loc-left: 24px; --map-top: 0px; }
+  :root { --loc-left: 24px; --map-top: 0px; --map-left: 270px; }
   .locations-copy { left: 24px; right: 24px; width: auto; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(24px, 5vw, 56px); align-content: start; padding-bottom: 30px; }
   .locations-copy .eyebrow, .locations-copy h1, .locations-copy .loc-address { grid-column: 1; }
   .locations-copy .loc-desc, .locations-copy > small, .locations-copy .button { grid-column: 2; justify-self: start; }
@@ -334,7 +334,7 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 }
 @media (min-width: 641px) and (max-height: 720px) { .locations-copy { padding-top: 102px; } }
 @media (max-width: 640px) {
-  :root { --loc-left: 13px; --loc-pad: 17px; --hdr-pad: 9px; --map-top: 0px; }
+  :root { --loc-left: 13px; --loc-pad: 17px; --hdr-pad: 9px; --map-top: 0px; --map-left: 270px; }
   .locations-copy { top: 0; left: 13px; right: auto; width: calc(100% - 26px); padding-top: 116px; border-bottom-right-radius: 35px; }
 }
 @media (max-width: 640px) and (max-height: 720px) { .locations-copy .loc-desc, .locations-copy > small { display: none; } }
