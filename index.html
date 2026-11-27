@@ -1,0 +1,153 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ecebe4" />
+    <meta name="description" content="Plumbing, electrical works, full renovations, garden projects, carpentry, painting and decorating from D&M Renovation." />
+    <title>D&amp;M Renovation — A home that feels like yours</title>
+    <link rel="preload" as="image" href="assets/service-renovation.jpg" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="screen" id="home">
+      <div class="ambient ambient-one" aria-hidden="true"></div>
+      <div class="ambient ambient-two" aria-hidden="true"></div>
+
+      <div class="site-frame">
+        <header class="site-header">
+          <button class="brand-button" type="button" data-view="home" aria-label="D&M Renovation, Home">
+            <img src="assets/dm-renovation-logo-transparent.png" alt="D&M Renovation" />
+          </button>
+
+          <nav class="tab-list" role="tablist" aria-label="Website pages">
+            <button class="tab-link is-active" type="button" role="tab" id="tab-home" aria-controls="view-home" aria-selected="true" data-view="home">Home</button>
+            <button class="tab-link" type="button" role="tab" id="tab-about" aria-controls="view-about" aria-selected="false" data-view="about" tabindex="-1">About</button>
+            <button class="tab-link" type="button" role="tab" id="tab-services" aria-controls="view-services" aria-selected="false" data-view="services" tabindex="-1">Services</button>
+            <button class="tab-link" type="button" role="tab" id="tab-gallery" aria-controls="view-gallery" aria-selected="false" data-view="gallery" tabindex="-1">Gallery</button>
+            <button class="tab-link" type="button" role="tab" id="tab-locations" aria-controls="view-locations" aria-selected="false" data-view="locations" tabindex="-1">Locations</button>
+            <button class="tab-link" type="button" role="tab" id="tab-contact" aria-controls="view-contact" aria-selected="false" data-view="contact" tabindex="-1">Contact</button>
+          </nav>
+          <button class="header-cta" type="button" data-view="contact">Get in touch <span aria-hidden="true">↗</span></button>
+        </header>
+
+        <div class="view-window">
+          <section class="view-panel home-panel is-active" id="view-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0" data-panel="home">
+            <div class="hero-copy">
+              <p class="eyebrow"><span></span> Building &amp; maintaining your portfolio</p>
+              <h1>Your home, cared for <em>inside and out.</em></h1>
+              <p class="hero-description">Plumbing, electrical work, full renovations, gardens, carpentry and decorating — practical help for the jobs that make a home work better.</p>
+              <div class="hero-actions">
+                <button class="button button-dark" type="button" data-view="contact">Discuss your project <span aria-hidden="true">→</span></button>
+                <button class="text-link" type="button" data-view="gallery">Explore the gallery <span aria-hidden="true">↘</span></button>
+              </div>
+              <div class="hero-note"><span class="note-mark">D&amp;M</span><span>Based in London · serving nearby neighbourhoods.</span></div>
+            </div>
+            <div class="hero-image-wrap">
+              <img src="assets/service-renovation.jpg" alt="Renovation professional showing a couple their newly finished home" fetchpriority="high" />
+              <div class="hero-image-shade"></div>
+              <div class="hero-image-caption"><span>A BETTER WAY TO BUILD</span><strong>Spaces made for living.</strong></div>
+              <div class="image-index">01 <i>/</i> 04</div>
+            </div>
+          </section>
+
+          <section class="view-panel about-panel" id="view-about" role="tabpanel" aria-labelledby="tab-about" tabindex="0" data-panel="about" hidden>
+            <div class="about-copy">
+              <p class="eyebrow"><span></span> A little about us</p>
+              <h1>One team for the jobs that <em>matter.</em></h1>
+              <p>From a leaking tap or a fresh coat of paint to a complete renovation, D&amp;M Renovation helps with the practical work that keeps a home looking good and working well.</p>
+              <p>That includes improvements inside and out, with materials arranged for you or chosen to suit your project.</p>
+              <ul class="approach-list">
+                <li><span>01</span> Plumbing &amp; electrical</li>
+                <li><span>02</span> Renovations &amp; decorating</li>
+                <li><span>03</span> Garden &amp; carpentry</li>
+              </ul>
+              <button class="text-link" type="button" data-view="contact">Tell us about your plans <span aria-hidden="true">↗</span></button>
+            </div>
+            <div class="about-image">
+              <img src="assets/service-garden.jpg" alt="Landscaper and homeowner looking over a refreshed garden" />
+              <span>MAKE SPACE FOR WHAT MATTERS</span>
+            </div>
+          </section>
+
+          <section class="view-panel services-panel" id="view-services" role="tabpanel" aria-labelledby="tab-services" tabindex="0" data-panel="services" hidden>
+            <div class="view-heading">
+              <div><p class="eyebrow"><span></span> What we do</p><h1>Practical help, <em>well done.</em></h1></div>
+              <p>From everyday repairs to complete renovations, explore the work D&amp;M Renovation can help with.<small>Illustrative images — replace with photos of completed jobs for a true portfolio.</small></p>
+            </div>
+            <div class="service-grid">
+              <article class="service-card"><img src="assets/service-plumbing.jpg" alt="Plumber fitting a tap in a finished bathroom" loading="lazy" /><div class="service-copy"><span class="service-number">01 / PLUMBING</span><h2>Plumbing</h2><p>Leaking taps and valves, tap and mixer changes, and radiator bleeding.</p></div></article>
+              <article class="service-card"><img src="assets/service-electrical.jpg" alt="Electrician fitting a wall light in a finished living room" loading="lazy" /><div class="service-copy"><span class="service-number">02 / ELECTRICAL</span><h2>Electrical works</h2><p>Light fittings, switches, sockets and transformers, plus light bulb changes.</p></div></article>
+              <article class="service-card"><img src="assets/service-renovation.jpg" alt="Renovation professional showing homeowners their finished room" loading="lazy" /><div class="service-copy"><span class="service-number">03 / RENOVATION</span><h2>Full renovation</h2><p>Complete renovation and decoration, from preparing the space to the final finish.</p></div></article>
+              <article class="service-card"><img src="assets/service-garden.jpg" alt="Landscaper and homeowner discussing a refreshed garden" loading="lazy" /><div class="service-copy"><span class="service-number">04 / GARDEN</span><h2>Garden works</h2><p>Fencing, garden clearance, gardening, decking and pressure washing.</p></div></article>
+              <article class="service-card"><img src="assets/service-carpentry.jpg" alt="Carpenter fitting a door handle in a bright hallway" loading="lazy" /><div class="service-copy"><span class="service-number">05 / CARPENTRY</span><h2>Carpentry &amp; handyman</h2><p>Kitchen fitting and repairs, doors, locks, handles and everyday carpentry jobs.</p></div></article>
+              <article class="service-card"><img src="assets/service-painting.jpg" alt="Decorator painting a living room wall while the homeowner looks on" loading="lazy" /><div class="service-copy"><span class="service-number">06 / DECORATING</span><h2>Painting &amp; decorating</h2><p>Interior and exterior work, plastering, woodwork, touch-ups and wall or ceiling repairs.</p></div></article>
+            </div>
+          </section>
+
+          <section class="view-panel gallery-panel" id="view-gallery" role="tabpanel" aria-labelledby="tab-gallery" tabindex="0" data-panel="gallery" hidden>
+            <div class="view-heading gallery-heading">
+              <div><p class="eyebrow"><span></span> The gallery</p><h1>Good work, <em>inside and out.</em></h1></div>
+              <p>A look at the people and skills behind the services.<small>Illustrative images — replace with completed projects when available</small></p>
+            </div>
+            <div class="gallery-grid">
+              <figure class="gallery-card"><img src="assets/service-plumbing.jpg" alt="Plumber fitting a tap in a finished bathroom" loading="lazy" /><figcaption><small>PLUMBING</small><strong>Small repairs, reliable finishes</strong></figcaption></figure>
+              <figure class="gallery-card"><img src="assets/service-electrical.jpg" alt="Electrician fitting a wall light in a finished living room" loading="lazy" /><figcaption><small>ELECTRICAL WORKS</small><strong>Light up your living space</strong></figcaption></figure>
+              <figure class="gallery-card"><img src="assets/service-renovation.jpg" alt="Renovation professional showing homeowners their finished room" loading="lazy" /><figcaption><small>FULL RENOVATION</small><strong>A fresh start at home</strong></figcaption></figure>
+              <figure class="gallery-card"><img src="assets/service-garden.jpg" alt="Landscaper and homeowner discussing a refreshed garden" loading="lazy" /><figcaption><small>GARDEN WORKS</small><strong>Make more of your outside space</strong></figcaption></figure>
+              <figure class="gallery-card"><img src="assets/service-carpentry.jpg" alt="Carpenter fitting a door handle in a bright hallway" loading="lazy" /><figcaption><small>CARPENTRY</small><strong>Finishing touches that fit</strong></figcaption></figure>
+              <figure class="gallery-card"><img src="assets/service-painting.jpg" alt="Decorator painting a living room wall while the homeowner looks on" loading="lazy" /><figcaption><small>PAINTING &amp; DECORATING</small><strong>Bring a room back to life</strong></figcaption></figure>
+            </div>
+          </section>
+
+          <section class="view-panel locations-panel" id="view-locations" role="tabpanel" aria-labelledby="tab-locations" tabindex="0" data-panel="locations" hidden>
+            <div class="locations-copy">
+              <p class="eyebrow"><span></span> Where we work</p>
+              <h1>Local knowledge.<br /><em>Thoughtful work.</em></h1>
+              <p>Visit D&amp;M Renovation at <strong>10 Kirby Close, London N11 3FE.</strong></p>
+              <small>Serving homeowners across North London and nearby areas.</small>
+              <button class="button button-light" type="button" data-view="contact">Discuss a local project <span aria-hidden="true">↗</span></button>
+            </div>
+            <div class="location-card">
+              <iframe title="Satellite map showing D&M Renovation at 10 Kirby Close, London N11 3FE" src="https://maps.google.com/maps?q=10%20Kirby%20Close%2C%20London%20N11%203FE&amp;t=k&amp;z=18&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <div class="map-caption"><span>FIND D&amp;M RENOVATION</span><strong>10 Kirby Close</strong><small>London · N11 3FE</small><a href="https://www.google.com/maps/search/?api=1&amp;query=10%20Kirby%20Close%2C%20London%20N11%203FE" target="_blank" rel="noopener">Open directions <b aria-hidden="true">↗</b></a></div>
+            </div>
+          </section>
+
+          <section class="view-panel contact-panel" id="view-contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="0" data-panel="contact" hidden>
+            <div class="contact-copy">
+              <p class="eyebrow"><span></span> Get in touch</p>
+              <h1>Let’s make something <em>better.</em></h1>
+              <p>Share a little about your plans and we’ll get the conversation started.</p>
+              <div class="contact-details">
+                <div><small>LOCATION</small><strong>London · N11 3FE</strong></div>
+                <div><small>PHONE</small><strong>[Your phone number]</strong></div>
+                <div><small>EMAIL</small><strong>[Your email address]</strong></div>
+              </div>
+              <small class="contact-note">Replace sample details with your business contact information.</small>
+            </div>
+            <form class="contact-form" id="enquiry-form">
+              <div class="form-row">
+                <label for="name">Your name <span>*</span><input id="name" name="name" autocomplete="name" required placeholder="e.g. Alex Morgan" /></label>
+                <label for="email">Email address <span>*</span><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" /></label>
+              </div>
+              <label for="project-type">What are you thinking about?
+                <select id="project-type" name="project-type"><option value="">Choose a project type</option><option>Plumbing</option><option>Electrical works</option><option>Full renovation</option><option>Garden works</option><option>Carpentry / handyman</option><option>Painting and decorating</option><option>Something else</option></select>
+              </label>
+              <label for="message">A little about your project <span>*</span><textarea id="message" name="message" rows="3" required placeholder="What would you like to change about your home?"></textarea></label>
+              <button class="button button-dark form-submit" type="submit">Prepare your enquiry <span aria-hidden="true">→</span></button>
+              <p class="form-note" id="form-status" role="status" aria-live="polite">Your details are only used to respond to your enquiry.</p>
+            </form>
+          </section>
+        </div>
+
+        <footer class="frame-footer">
+          <span>D&amp;M RENOVATION</span><span>10 Kirby Close · London N11 3FE</span><span>© <span id="current-year">2026</span></span>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
+
+
