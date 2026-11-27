@@ -78,3 +78,10 @@ if (form) {
 
 const year = document.querySelector("#current-year");
 if (year) year.textContent = String(new Date().getFullYear());
+
+// Respect "reduce motion": show a still frame of the hero video instead of playing it.
+const heroVideo = document.querySelector(".hero-video");
+if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  heroVideo.removeAttribute("autoplay");
+  heroVideo.pause();
+}
