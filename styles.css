@@ -20,6 +20,7 @@ img { display: block; max-width: 100%; }
 ::selection { color: var(--ink); background: var(--accent); }
 :focus-visible { outline: 3px solid #78883d; outline-offset: 3px; }
 [hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 .screen { position: relative; isolation: isolate; width: 100%; height: 100dvh; display: grid; place-items: center; overflow: hidden; padding: clamp(12px, 3vh, 28px) clamp(12px, 3vw, 40px); background: radial-gradient(ellipse at 12% 16%, rgba(255,255,255,.48), transparent 31%), radial-gradient(ellipse at 89% 85%, rgba(205,199,177,.32), transparent 29%), #e9e8e1; }
 .ambient { position: absolute; z-index: -1; border: 1px solid rgba(104,111,89,.12); border-radius: 50%; pointer-events: none; }
