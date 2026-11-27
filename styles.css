@@ -121,8 +121,8 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 .gallery-card figcaption small { color: rgba(255,255,255,.78); font-size: 8px; font-weight: 700; letter-spacing: .12em; }
 .gallery-card figcaption strong { overflow: hidden; font-size: 14px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
 
-.locations-panel { padding: 0; background: #c7c9c0; color: var(--ink); }
-.location-card { position: absolute; inset: 0; overflow: hidden; background: #c7c9c0; }
+.locations-panel { padding: 0; background: #3b4740; color: var(--ink); }
+.location-card { position: absolute; inset: 0; overflow: hidden; background: #3b4740; }
 /* The embed draws its own white address card in its top-left corner; push that corner out of view. */
 .location-card iframe { position: absolute; top: -170px; left: 0; width: 100%; height: calc(100% + 170px); border: 0; }
 .locations-copy { position: absolute; z-index: 2; top: 50%; left: clamp(24px, 5vw, 72px); width: min(380px, 39%); padding: clamp(23px, 3vw, 38px); border: 1px solid rgba(255,255,255,.65); border-radius: 8px 8px 54px 8px; background: rgba(250,249,244,.94); box-shadow: 0 18px 58px rgba(23,30,25,.2); transform: translateY(-42%); }
