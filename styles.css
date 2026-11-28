@@ -491,3 +491,15 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
   .contact-card .contact-form input, .contact-card .contact-form select, .contact-card .contact-form textarea { background: rgba(255,255,255,.72); }
 }
 @media (min-width: 1200px) { .contact-card { width: min(58%, 840px); } }
+
+/* Services: sketch background, dark text */
+.services-panel::before { background-image: url("assets/services-sketch.jpg"); background-color: #f1eadf; }
+.services-panel::after { background: none; }
+.services-panel { color: var(--ink); }
+.services-panel .eyebrow { color: #4d5149; }
+.services-panel h1 { color: var(--ink); }
+.services-panel h1 em { color: #6f7d48; }
+.services-panel .view-heading > p { color: #4d5149; }
+.services-panel .view-heading > p small { color: #6a6f63; }
+.site-frame[data-view="services"] .brand-button img { filter: none; }
+.service-card { background: rgba(250,249,244,.55); }
