@@ -427,3 +427,11 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 .frame-footer .footer-link { color: rgba(255,255,255,.88); font-size: 9px; text-decoration: none; }
 .frame-footer .footer-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 640px) { .frame-footer .footer-link { font-size: 6px; } }
+
+/* About: sketch background, glass card on the right */
+.about-image { background: #efe9de; }
+.about-image img { object-position: 22% center; }
+.about-image::after { background: linear-gradient(0deg, rgba(40,36,28,.16), transparent 30%); }
+.about-image > span { right: auto; left: 34px; }
+.about-copy { left: auto; right: clamp(28px, 5.5vw, 82px); background: rgba(250,249,244,.46); border-color: rgba(255,255,255,.7); backdrop-filter: blur(18px) saturate(1.1); -webkit-backdrop-filter: blur(18px) saturate(1.1); box-shadow: 0 18px 60px rgba(27,32,24,.1); }
+@media (max-width: 640px) { .about-copy { left: 14px; right: auto; background: rgba(250,249,244,.58); } .about-image > span { left: 12px; } .about-image img { object-position: 30% 22%; } }
