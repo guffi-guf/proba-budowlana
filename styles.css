@@ -513,3 +513,32 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 .services-lamps i:nth-child(3) { left: calc(50cqw + (.6926 - .5) * var(--W)); animation-delay: -7.1s; }
 @keyframes lamp-out { 0%, 78%, 100% { opacity: 0; } 79% { opacity: .9; } 80% { opacity: .1; } 81.5% { opacity: .95; } 83% { opacity: .3; } 84% { opacity: .9; } 86% { opacity: 0; } 88% { opacity: .65; } 89% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .services-lamps i { animation: none; } }
+
+/* About: tree and grass sway in the wind, leaves drift away */
+.about-sway { --ox: .22; --oy: .5; --W: max(100cqw, calc(100cqh * 2)); --H: max(100cqh, calc(100cqw * .5)); position: absolute; inset: 0; pointer-events: none; overflow: hidden; container-type: size; }
+.sway-stage { position: absolute; width: var(--W); height: var(--H); left: calc((100cqw - var(--W)) * var(--ox)); top: calc((100cqh - var(--H)) * var(--oy)); }
+.sway-layer { position: absolute; inset: 0; display: block; background: url("assets/about-sketch.jpg") 0 0 / 100% 100% no-repeat; will-change: transform; }
+.sway-tree { -webkit-mask-image: radial-gradient(ellipse 22% 28% at 17% 22%, #000 68%, transparent 100%); mask-image: radial-gradient(ellipse 22% 28% at 17% 22%, #000 68%, transparent 100%); transform-origin: 9.6% 45%; animation: tree-sway 7s ease-in-out infinite; }
+.sway-grass { -webkit-mask-image: radial-gradient(ellipse 14% 17% at 19% 78%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 14% 17% at 19% 78%, #000 62%, transparent 100%); transform-origin: 19% 92%; animation: grass-sway 4.6s ease-in-out infinite; }
+@keyframes tree-sway { 0%, 100% { transform: rotate(-.9deg); } 30% { transform: rotate(1.5deg); } 55% { transform: rotate(.2deg); } 80% { transform: rotate(1.2deg); } }
+@keyframes grass-sway { 0%, 100% { transform: skewX(-1.1deg); } 35% { transform: skewX(1.3deg); } 65% { transform: skewX(-.2deg); } }
+.leaf { position: absolute; width: calc(var(--W) * .009); height: calc(var(--W) * .0055); border-radius: 0 100% 0 100%; background: linear-gradient(135deg, #cfcdb0, #a8a888); border: .5px solid rgba(90,90,70,.55); opacity: 0; animation: leaf-fly 11s linear infinite; }
+.leaf:nth-of-type(1) { left: 12%; top: 14%; animation-duration: 10s; animation-delay: -1s; }
+.leaf:nth-of-type(2) { left: 20%; top: 9%; animation-duration: 13s; animation-delay: -5s; }
+.leaf:nth-of-type(3) { left: 7%; top: 24%; animation-duration: 12s; animation-delay: -8s; }
+.leaf:nth-of-type(4) { left: 25%; top: 21%; animation-duration: 9s; animation-delay: -3s; }
+.leaf:nth-of-type(5) { left: 15%; top: 30%; animation-duration: 14s; animation-delay: -10s; }
+.leaf:nth-of-type(6) { left: 29%; top: 12%; animation-duration: 11s; animation-delay: -6.5s; }
+.leaf:nth-of-type(7) { left: 5%; top: 16%; animation-duration: 15s; animation-delay: -12s; }
+@keyframes leaf-fly {
+  0% { opacity: 0; transform: translate(0, 0) rotate(0); }
+  8% { opacity: .9; }
+  25% { transform: translate(calc(var(--W) * .05), calc(var(--H) * .12)) rotate(130deg); }
+  50% { transform: translate(calc(var(--W) * .1), calc(var(--H) * .26)) rotate(250deg); }
+  75% { opacity: .9; transform: translate(calc(var(--W) * .17), calc(var(--H) * .42)) rotate(400deg); }
+  100% { opacity: 0; transform: translate(calc(var(--W) * .23), calc(var(--H) * .6)) rotate(540deg); }
+}
+.about-image:hover img { transform: none; }
+@media (max-width: 640px) { .about-sway { --ox: .3; --oy: .22; } }
+@media (prefers-reduced-motion: reduce) { .sway-layer, .leaf { animation: none; } .leaf { display: none; } }
+.sway-tree { clip-path: polygon(0 0, 33% 0, 33% 37.2%, 28.2% 34.6%, 4.8% 53.3%, 0 56%); }
