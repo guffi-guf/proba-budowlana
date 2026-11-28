@@ -115,7 +115,6 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
       [...$("pd-thumbs").children].forEach((b, n) => b.addEventListener("click", () => show(n)));
       media.dataset.single = String(photos.length < 2);
       $("pd-title").textContent = card.querySelector(".glass-title").textContent;
-      $("pd-price").textContent = card.querySelector(".glass-price").textContent;
       $("pd-desc").textContent = card.querySelector(".glass-desc").textContent;
       $("pd-tags").innerHTML = card.querySelector(".glass-tags").innerHTML;
       $("pd-track").style.transition = "none"; show(0); void $("pd-track").offsetWidth; $("pd-track").style.transition = "";
