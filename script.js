@@ -92,3 +92,25 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
   heroVideo.removeAttribute("autoplay");
   heroVideo.pause();
 }
+
+// Gallery project dialog
+(() => {
+  const dialog = document.getElementById("project-dialog");
+  if (!dialog) return;
+  const $ = (id) => document.getElementById(id);
+  document.querySelectorAll(".glass-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const img = card.querySelector(".glass-src");
+      $("pd-image").style.backgroundImage = `url("${img.getAttribute("src")}")`;
+      $("pd-image").setAttribute("aria-label", img.alt);
+      $("pd-title").textContent = card.querySelector(".glass-title").textContent;
+      $("pd-price").textContent = card.querySelector(".glass-price").textContent;
+      $("pd-desc").textContent = card.querySelector(".glass-desc").textContent;
+      $("pd-tags").innerHTML = card.querySelector(".glass-tags").innerHTML;
+      dialog.showModal();
+    });
+  });
+  $("pd-close").addEventListener("click", () => dialog.close());
+  $("pd-quote").addEventListener("click", () => { dialog.close(); activateView("contact"); });
+  dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+})();
