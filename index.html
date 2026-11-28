@@ -7,7 +7,9 @@
     <meta name="description" content="Plumbing, electrical works, full renovations, garden projects, carpentry, painting and decorating from D&M Renovation." />
     <title>D&amp;M Renovation — A home that feels like yours</title>
     <link rel="preload" as="image" href="assets/hero-poster-2.jpg" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -129,8 +131,7 @@
               <button class="button button-light" type="button" data-view="contact">Discuss a local project <span aria-hidden="true">↗</span></button>
             </div>
             <div class="location-card">
-              <iframe title="Satellite map showing D&M Renovation at 10 Kirby Close, London N11 3FE" src="https://maps.google.com/maps?q=10%20Kirby%20Close%2C%20London%20N11%203FE&amp;t=k&amp;z=18&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              <div class="map-pin-label" aria-hidden="true">D&amp;M Renovation</div>
+              <div class="loc-map" id="loc-map" role="img" aria-label="Map showing D&amp;M Renovation at 10 Kirby Close, London N11 3FE"></div>
               <div class="map-caption"><span>OPENING HOURS</span><dl class="hours-list"><div data-day="1"><dt>Monday</dt><dd>09:00 – 17:00</dd></div><div data-day="2"><dt>Tuesday</dt><dd>09:00 – 17:00</dd></div><div data-day="3"><dt>Wednesday</dt><dd>09:00 – 17:00</dd></div><div data-day="4"><dt>Thursday</dt><dd>09:00 – 17:00</dd></div><div data-day="5"><dt>Friday</dt><dd>09:00 – 17:00</dd></div><div data-day="6"><dt>Saturday</dt><dd>Closed</dd></div><div data-day="0"><dt>Sunday</dt><dd>Closed</dd></div></dl><a href="https://www.google.com/maps/search/?api=1&query=10%20Kirby%20Close%2C%20London%20N11%203FE" target="_blank" rel="noopener">Get directions <b>↗</b></a></div>
             </div>
           </section>

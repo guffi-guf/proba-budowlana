@@ -133,3 +133,71 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
   }
   update(); setInterval(update, 60000);
 })();
+
+// Interactive map: custom pin and a car driving round the block
+(() => {
+  const el = document.getElementById("loc-map");
+  if (!el || typeof L === "undefined") return;
+  const PIN = [51.61081, -0.14972]; // Kirkby Close, N11
+  const LOOP = [
+    [51.610326,-0.149658],[51.610332,-0.149588],[51.610354,-0.149477],[51.610376,-0.149419],[51.610417,-0.14937],[51.610708,-0.149159],[51.610756,-0.149109],[51.610789,-0.149051],[51.611077,-0.148473],
+    [51.610936,-0.148281],[51.610595,-0.147777],[51.610535,-0.147681],[51.61041,-0.147506],[51.610371,-0.147484],[51.610327,-0.147511],[51.609959,-0.148256],
+    [51.609639,-0.148903],[51.609621,-0.148969],[51.609615,-0.149052],[51.609688,-0.149271],[51.609813,-0.149284],[51.609855,-0.149301],[51.610105,-0.14961],[51.610214,-0.149662],[51.610246,-0.149661],[51.610326,-0.149658]
+  ];
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pinSvg = '<svg viewBox="0 0 44 56" aria-hidden="true"><path d="M22 55C22 55 3 33 3 20.5A19 19 0 0 1 41 20.5C41 33 22 55 22 55Z" fill="#26342e" stroke="#fff" stroke-width="3"/><circle cx="22" cy="20" r="7.5" fill="#d7e86b"/></svg>';
+  const carSvg = '<svg viewBox="0 0 16 30" aria-hidden="true"><rect x="1" y="1" width="14" height="28" rx="6" fill="#b6d95a" stroke="#26342e" stroke-width="1.6"/><rect x="3.4" y="6.5" width="9.2" height="5.5" rx="1.8" fill="#26342e"/><rect x="3.4" y="19" width="9.2" height="4.5" rx="1.6" fill="#26342e"/><rect x="2.4" y="2.6" width="3" height="1.6" rx=".8" fill="#fffbe0"/><rect x="10.6" y="2.6" width="3" height="1.6" rx=".8" fill="#fffbe0"/></svg>';
+  let map = null, car = null, carEl = null;
+  // route geometry in metres
+  const k = Math.cos((51.61 * Math.PI) / 180), M = 111320;
+  const segs = []; let total = 0;
+  for (let i = 0; i < LOOP.length - 1; i++) {
+    const [a, b] = [LOOP[i], LOOP[i + 1]];
+    const dx = (b[1] - a[1]) * k * M, dy = (b[0] - a[0]) * M, len = Math.hypot(dx, dy);
+    segs.push({ a, b, len, start: total, heading: (Math.atan2(dx, dy) * 180) / Math.PI });
+    total += len;
+  }
+  function at(d) {
+    d = ((d % total) + total) % total;
+    const s = segs.find((x) => d >= x.start && d < x.start + x.len) || segs[segs.length - 1];
+    const t = (d - s.start) / s.len;
+    return { pos: [s.a[0] + (s.b[0] - s.a[0]) * t, s.a[1] + (s.b[1] - s.a[1]) * t], heading: s.heading };
+  }
+  function fit() {
+    const wrap = el.getBoundingClientRect();
+    const rect = (sel) => { const n = document.querySelector(sel); return n ? n.getBoundingClientRect() : null; };
+    const panel = rect(".locations-copy"), cap = rect(".map-caption");
+    const wide = window.innerWidth >= 1200;
+    const tl = wide ? [Math.max(0, panel.right - wrap.left) + 24, 96] : [16, Math.max(0, panel.bottom - wrap.top) + 14];
+    const br = wide ? [(cap ? cap.width : 0) + 44, 64] : window.innerWidth > 640 ? [(cap ? cap.width : 0) + 24, 62] : [16, (cap ? cap.height : 0) + 62];
+    map.fitBounds(L.latLngBounds(LOOP.concat([PIN])), { paddingTopLeft: tl, paddingBottomRight: br, maxZoom: 19, animate: false });
+  }
+  function init() {
+    map = L.map(el, { zoomControl: false, scrollWheelZoom: false, attributionControl: true, zoomSnap: 0.25 });
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rasterTiles/voyager/{z}/{x}/{y}{r}.png", { subdomains: "abcd", maxZoom: 20, attribution: "&copy; OpenStreetMap contributors &copy; CARTO" }).addTo(map);
+    L.marker(PIN, { keyboard: false, zIndexOffset: 500, icon: L.divIcon({ className: "", iconSize: [44, 56], iconAnchor: [22, 55], html: '<div class="dm-pin"><span class="dm-pin-pulse"></span>' + pinSvg + '<span class="dm-pin-label">D&amp;M Renovation</span></div>' }) }).addTo(map);
+    car = L.marker(at(0).pos, { keyboard: false, interactive: false, icon: L.divIcon({ className: "", iconSize: [16, 30], iconAnchor: [8, 15], html: '<div class="dm-car">' + carSvg + "</div>" }) }).addTo(map);
+    carEl = car.getElement().firstChild;
+    fit();
+    if (!reduce) {
+      let d = 0, last = performance.now(), hd = at(0).heading;
+      const SPEED = 13; // metres per second
+      (function tick(now) {
+        const dt = Math.min((now - last) / 1000, 0.1); last = now;
+        if (!document.hidden && el.offsetWidth > 0) {
+          d += SPEED * dt;
+          const p = at(d);
+          let diff = ((p.heading - hd + 540) % 360) - 180; hd += diff * Math.min(1, dt * 7);
+          car.setLatLng(p.pos); carEl.style.transform = "rotate(" + hd + "deg)";
+        }
+        requestAnimationFrame(tick);
+      })(last);
+    } else carEl.style.transform = "rotate(" + at(0).heading + "deg)";
+  }
+  let timer;
+  new ResizeObserver(() => {
+    if (!el.offsetWidth) return;
+    if (!map) { init(); return; }
+    map.invalidateSize(); clearTimeout(timer); timer = setTimeout(fit, 150);
+  }).observe(el);
+})();
