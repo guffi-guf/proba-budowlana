@@ -1,4 +1,4 @@
-const CONTACT_EMAIL = ""; // Add the business email here to activate the enquiry handoff.
+const CONTACT_EMAIL = "dominika@dmrenovations.net"; // Enquiry form opens a prefilled email to this address.
 
 const tabs = Array.from(document.querySelectorAll('[role="tab"][data-view]'));
 const panels = Array.from(document.querySelectorAll("[data-panel]"));
