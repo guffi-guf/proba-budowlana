@@ -594,3 +594,10 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 }
 @media (min-width: 901px) { .glass-row { padding-bottom: 58px; } .glass-card { height: min(100%, 320px); } }
 @media (max-width: 900px) { .gallery-panel::before { opacity: .3; background-size: cover; background-position: 70% bottom; } }
+
+/* Gallery: only 3 cards visible at once, kept to the left so the sketch stays clear */
+@media (min-width: 901px) {
+  .glass-row { --cw: clamp(140px, 11.5vw, 170px); --gp: clamp(24px, 2.2vw, 32px); width: calc(3 * var(--cw) + 2 * var(--gp)); }
+  .glass-row.is-carousel .glass-track { gap: var(--gp); }
+}
+@media (min-width: 901px) { .glass-row { box-sizing: border-box; width: calc(3 * var(--cw) + 2 * var(--gp) + 16px); margin-left: -8px; margin-right: auto; } }
