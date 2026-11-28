@@ -503,3 +503,13 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 .services-panel .view-heading > p small { color: #6a6f63; }
 .site-frame[data-view="services"] .brand-button img { filter: none; }
 .service-card { background: rgba(250,249,244,.55); }
+
+/* Services: cracked-wall background with occasionally flickering lamps */
+.services-panel::before { background-image: url("assets/services-wall.jpg"); }
+.services-lamps { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; container-type: size; --W: max(100cqw, calc(100cqh * 1.7769)); --H: max(100cqh, calc(100cqw * .5628)); }
+.services-lamps i { position: absolute; width: calc(var(--W) * .3); aspect-ratio: 1; border-radius: 50%; transform: translate(-50%, -50%); top: calc(50cqh + (.31 - .5) * var(--H)); background: radial-gradient(circle, rgba(60,46,32,.5) 0%, rgba(60,46,32,.26) 34%, transparent 68%); mix-blend-mode: multiply; opacity: 0; animation: lamp-out 9s infinite; }
+.services-lamps i:nth-child(1) { left: calc(50cqw + (.3068 - .5) * var(--W)); animation-delay: -1.2s; }
+.services-lamps i:nth-child(2) { left: calc(50cqw + (.5 - .5) * var(--W)); animation-delay: -4.7s; }
+.services-lamps i:nth-child(3) { left: calc(50cqw + (.6926 - .5) * var(--W)); animation-delay: -7.1s; }
+@keyframes lamp-out { 0%, 78%, 100% { opacity: 0; } 79% { opacity: .9; } 80% { opacity: .1; } 81.5% { opacity: .95; } 83% { opacity: .3; } 84% { opacity: .9; } 86% { opacity: 0; } 88% { opacity: .65; } 89% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .services-lamps i { animation: none; } }
