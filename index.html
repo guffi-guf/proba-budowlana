@@ -7,9 +7,7 @@
     <meta name="description" content="Plumbing, electrical works, full renovations, garden projects, carpentry, painting and decorating from D&M Renovation." />
     <title>D&amp;M Renovation — A home that feels like yours</title>
     <link rel="preload" as="image" href="assets/hero-poster-2.jpg" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -55,16 +53,27 @@
 
           <section class="view-panel about-panel" id="view-about" role="tabpanel" aria-labelledby="tab-about" tabindex="0" data-panel="about" hidden>
             <div class="about-copy">
-              <p class="eyebrow"><span></span> A little about us</p>
-              <h1>One team for the jobs that <em>matter.</em></h1>
-              <p>From a leaking tap or a fresh coat of paint to a complete renovation, D&amp;M Renovation helps with the practical work that keeps a home looking good and working well.</p>
-              <p>That includes improvements inside and out, with materials arranged for you or chosen to suit your project.</p>
-              <ul class="approach-list">
-                <li><span>01</span> Plumbing &amp; electrical</li>
-                <li><span>02</span> Renovations &amp; decorating</li>
-                <li><span>03</span> Garden &amp; carpentry</li>
-              </ul>
-              <button class="text-link" type="button" data-view="contact">Tell us about your plans <span aria-hidden="true">↗</span></button>
+              <div class="about-main">
+                <h1>Welcome to D&amp;M Renovations Ltd!</h1>
+                <p class="about-lead">Your trusted partner for all your property needs in London and surroundings!</p>
+                <p>Our construction company was established in 2023, with a commitment to delivering exceptional quality services to our clients.</p>
+                <p>Whatever size job or project you require D&amp;M Renovations Ltd to undertake, you can be rest assured that we can take your requirement from conception through to the highest level of completion. We are reliable, professional and can work on various scale projects from the smallest of jobs such as flat pack assembly through to large scale projects such as office refurbishment, kitchen or bathroom renovations and more.</p>
+                <p>We have a team of skilled and experienced tradespeople and construction experts in your area, providing a creative eye for detail on a plethora of property renovation projects.</p>
+              </div>
+              <div class="about-side">
+                <h2>Our trustworthy and affordable service includes:</h2>
+                <ul class="service-checks">
+                  <li>Full Home Refurbishment and Renovation</li>
+                  <li>Flat Refurbishment and Renovation</li>
+                  <li>Refurbishment Projects of all Sizes Taken On</li>
+                  <li>Commercial Property Refurbishment and Renovation</li>
+                  <li>Bathroom and Kitchen Renovation</li>
+                  <li>Rubbish removal</li>
+                  <li>End of Tenancy Clean</li>
+                </ul>
+                <p>We know that your time is valuable, and that’s why we provide free, fast and accurate price quotes. You can trust us to be transparent about our pricing, and we never add any hidden fees or charges.</p>
+                <button class="text-link" type="button" data-view="contact">Get a free quote <span aria-hidden="true">↗</span></button>
+              </div>
             </div>
             <div class="about-image">
               <img src="assets/service-garden.jpg" alt="Landscaper and homeowner looking over a refreshed garden" />
@@ -98,7 +107,7 @@
                 <span class="glass-face" style="background-image:url('assets/service-plumbing.jpg')"><span class="glass-info"><span class="glass-top"><strong class="glass-title">Bathroom Refit</strong><em class="glass-price">From £450</em></span><span class="glass-desc">Leaks fixed, taps and fittings replaced, and a clean finish you can rely on.</span><span class="glass-foot"><span class="glass-tags"><span>Plumbing</span><span>1–2 days</span></span><b class="glass-go" aria-hidden="true">↗</b></span></span></span>
                 <img class="glass-src" src="assets/service-plumbing.jpg" alt="Plumber fitting a tap in a finished bathroom" hidden />
               </button>
-              <button class="glass-card" type="button" style="--t:70,58,47" data-project="1" aria-haspopup="dialog" aria-label="Open project: Lighting">
+              <button class="glass-card" type="button" style="--t:70,58,47" data-images="assets/service-electrical.jpg|assets/service-renovation.jpg|assets/service-carpentry.jpg|assets/service-painting.jpg" data-project="1" aria-haspopup="dialog" aria-label="Open project: Lighting">
                 <span class="glass-glow" style="background-image:url('assets/service-electrical.jpg')" aria-hidden="true"></span>
                 <span class="glass-face" style="background-image:url('assets/service-electrical.jpg')"><span class="glass-info"><span class="glass-top"><strong class="glass-title">Lighting</strong><em class="glass-price">From £280</em></span><span class="glass-desc">Lights and sockets fitted safely and tested before we leave.</span><span class="glass-foot"><span class="glass-tags"><span>Electrical</span><span>1 day</span></span><b class="glass-go" aria-hidden="true">↗</b></span></span></span>
                 <img class="glass-src" src="assets/service-electrical.jpg" alt="Electrician fitting a wall light in a finished living room" hidden />
@@ -131,7 +140,8 @@
               <button class="button button-light" type="button" data-view="contact">Discuss a local project <span aria-hidden="true">↗</span></button>
             </div>
             <div class="location-card">
-              <div class="loc-map" id="loc-map" role="img" aria-label="Map showing D&amp;M Renovation at 10 Kirby Close, London N11 3FE"></div>
+              <iframe title="Satellite map showing D&M Renovation at 10 Kirby Close, London N11 3FE" src="https://maps.google.com/maps?q=10%20Kirby%20Close%2C%20London%20N11%203FE&amp;t=k&amp;z=18&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <div class="map-pin-label" aria-hidden="true">D&amp;M Renovation</div>
               <div class="map-caption"><span>OPENING HOURS</span><dl class="hours-list"><div data-day="1"><dt>Monday</dt><dd>09:00 – 17:00</dd></div><div data-day="2"><dt>Tuesday</dt><dd>09:00 – 17:00</dd></div><div data-day="3"><dt>Wednesday</dt><dd>09:00 – 17:00</dd></div><div data-day="4"><dt>Thursday</dt><dd>09:00 – 17:00</dd></div><div data-day="5"><dt>Friday</dt><dd>09:00 – 17:00</dd></div><div data-day="6"><dt>Saturday</dt><dd>Closed</dd></div><div data-day="0"><dt>Sunday</dt><dd>Closed</dd></div></dl><a href="https://www.google.com/maps/search/?api=1&query=10%20Kirby%20Close%2C%20London%20N11%203FE" target="_blank" rel="noopener">Get directions <b>↗</b></a></div>
             </div>
           </section>
@@ -170,7 +180,13 @@
     </main>
   
       <dialog class="project-dialog" id="project-dialog" aria-labelledby="pd-title">
-        <div class="pd-image" id="pd-image" role="img" aria-label=""></div>
+        <div class="pd-media">
+          <div class="pd-image" id="pd-image" role="group" aria-roledescription="carousel" aria-label="Project photos"><div class="pd-track" id="pd-track"></div></div>
+          <button class="pd-nav pd-prev" type="button" id="pd-prev" aria-label="Previous photo">‹</button>
+          <button class="pd-nav pd-next" type="button" id="pd-next" aria-label="Next photo">›</button>
+          <span class="pd-count" id="pd-count" aria-live="polite"></span>
+        </div>
+        <div class="pd-thumbs" id="pd-thumbs"></div>
         <div class="pd-body">
           <div class="pd-top"><h2 id="pd-title"></h2><em id="pd-price"></em></div>
           <p id="pd-desc"></p>
