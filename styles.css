@@ -542,3 +542,20 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 @media (max-width: 640px) { .about-sway { --ox: .3; --oy: .22; } }
 @media (prefers-reduced-motion: reduce) { .sway-layer, .leaf { animation: none; } .leaf { display: none; } }
 .sway-tree { clip-path: polygon(0 0, 33% 0, 33% 37.2%, 28.2% 34.6%, 4.8% 53.3%, 0 56%); }
+
+/* Contact: the tree sways and leaves drift down behind the builder (desktop) */
+.contact-scene { display: none; }
+@media (min-width: 900px) {
+  .contact-scene { display: block; position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; container-type: size; --W: max(100cqw, calc(100cqh * 2)); --H: max(100cqh, calc(100cqw * .5)); }
+  .contact-stage { position: absolute; left: 0; top: calc((100cqh - var(--H)) * .5); width: var(--W); height: var(--H); }
+  .csway { position: absolute; inset: 0; display: block; background: url("assets/contact-sketch.jpg") 0 0 / 100% 100% no-repeat; -webkit-mask-image: radial-gradient(ellipse 10% 27% at 6.5% 17%, #000 66%, transparent 100%); mask-image: radial-gradient(ellipse 10% 27% at 6.5% 17%, #000 66%, transparent 100%); clip-path: polygon(0 0, 13.6% 0, 13.6% 21.5%, 10.2% 22%, 10.2% 50%, 0 50%); transform-origin: 3.4% 45%; animation: tree-sway 7s ease-in-out infinite; will-change: transform; }
+  .contact-man { position: absolute; left: 10.48%; top: 3.27%; width: 15.11%; height: 89.74%; }
+  .contact-stage .leaf:nth-of-type(1) { left: 5%; top: 12%; }
+  .contact-stage .leaf:nth-of-type(2) { left: 10%; top: 8%; }
+  .contact-stage .leaf:nth-of-type(3) { left: 2.5%; top: 22%; }
+  .contact-stage .leaf:nth-of-type(4) { left: 12%; top: 17%; }
+  .contact-stage .leaf:nth-of-type(5) { left: 7%; top: 28%; }
+  .contact-stage .leaf:nth-of-type(6) { left: 3%; top: 10%; }
+  .contact-stage .leaf:nth-of-type(7) { left: 12.5%; top: 25%; }
+}
+@media (prefers-reduced-motion: reduce) { .csway { animation: none; } .contact-stage .leaf { display: none; } }
