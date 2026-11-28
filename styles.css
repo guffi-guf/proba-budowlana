@@ -624,3 +624,15 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 .map-pin-label { display: none; }
 .map-pin { width: 68px; transform: translate(-50%, calc(-100% + 5px)); }
 @media (max-width: 640px) { .map-pin { width: 54px; } }
+
+/* Interactive map (Leaflet + Esri imagery): the D&M pin is a real marker, so it stays on the address when the map moves. */
+.loc-map { position: absolute; inset: 0; z-index: 0; display: none; background: #3b4740; }
+.location-card.has-map .loc-map { display: block; }
+.location-card.has-map iframe, .location-card.has-map > .map-pin { display: none; }
+.loc-map .leaflet-control-container .leaflet-top.leaflet-right { top: 112px; }
+.loc-map .leaflet-bar a { background: rgba(250,249,244,.94); color: #20221f; }
+.loc-map .leaflet-control-attribution { font-size: 9px; background: rgba(250,249,244,.78); max-width: 60vw; }
+.loc-map .dm-pin { background: none; border: 0; filter: drop-shadow(0 8px 10px rgba(10,15,11,.45)); }
+.loc-map .dm-pin img { display: block; width: 100%; height: auto; }
+@media (max-width: 640px) { .loc-map .leaflet-control-zoom { display: none; } .loc-map .leaflet-top.leaflet-right { top: 0; } }
+@media (max-width: 900px) { .loc-map .leaflet-control-attribution { margin-bottom: 52px; } }

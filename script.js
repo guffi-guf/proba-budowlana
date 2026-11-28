@@ -290,3 +290,39 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
   window.addEventListener("pageshow", go);
   go();
 })();
+
+// Locations: interactive satellite map. The pin is a map marker, so it stays on the address when the map is dragged or zoomed.
+(() => {
+  const panel = document.getElementById("view-locations");
+  const card = panel && panel.querySelector(".location-card");
+  const el = card && card.querySelector("#loc-map");
+  const copy = panel && panel.querySelector(".locations-copy");
+  const cap = card && card.querySelector(".map-caption");
+  const HQ = [51.610897, -0.149961];
+  if (!el || !copy || typeof L === "undefined") return;
+  let map = null;
+  function focus() { // put the address in the middle of the part of the map the cards do not cover
+    const c = card.getBoundingClientRect(), W = c.width, H = c.height, k = copy.getBoundingClientRect(), p = cap ? cap.getBoundingClientRect() : null;
+    let cx, cy;
+    if (k.width > W * 0.6) { const top = k.bottom - c.top, bottom = p ? Math.min(H, p.top - c.top) : H; cx = W / 2; cy = bottom - top > 90 ? (top + bottom) / 2 + 10 : top + 70; }
+    else { cx = (k.right - c.left + W) / 2; cy = H / 2 + 20; }
+    map.setView(HQ, 18, { animate: false });
+    const pt = map.latLngToContainerPoint(HQ);
+    map.panBy([pt.x - cx, pt.y - cy], { animate: false });
+  }
+  function init() {
+    if (map || !card.getBoundingClientRect().width) return;
+    card.classList.add("has-map");
+    map = L.map(el, { zoomControl: true, minZoom: 12, maxZoom: 19, attributionControl: true, worldCopyJump: false });
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19, attribution: "Imagery © Esri, Maxar, Earthstar Geographics" }).addTo(map);
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19 }).addTo(map);
+    const w = window.innerWidth <= 640 ? 54 : 68, h = Math.round(w * 1.25);
+    const icon = L.divIcon({ className: "dm-pin", html: '<img src="assets/map-pin.png" alt="D&M Renovation, 10 Kirby Close" />', iconSize: [w, h], iconAnchor: [w / 2, h - 3] });
+    L.marker(HQ, { icon, title: "D&M Renovation, 10 Kirby Close, London N11 3FE", keyboard: false }).addTo(map).on("click", () => window.open("https://www.google.com/maps/search/?api=1&query=10%20Kirby%20Close%2C%20London%20N11%203FE", "_blank", "noopener"));
+    focus();
+  }
+  const show = () => { if (!panel.hidden) { init(); if (map) { map.invalidateSize(); } } };
+  new MutationObserver(show).observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+  window.addEventListener("resize", () => { if (map) { map.invalidateSize(); focus(); } });
+  show();
+})();
