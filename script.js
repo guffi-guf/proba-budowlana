@@ -150,3 +150,71 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
   }
   update(); setInterval(update, 60000);
 })();
+
+// Gallery carousel: the cursor position scrolls the row and the middle card stands out.
+(() => {
+  const row = document.querySelector(".glass-row");
+  const track = row && row.querySelector(".glass-track");
+  if (!row || !track) return;
+  const cards = [...track.querySelectorAll(".glass-card")];
+  const panel = document.getElementById("view-gallery");
+  const mq = window.matchMedia("(min-width: 901px) and (hover: hover)");
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let inited = false, cw = 0, step = 0, rowW = 0, pad = 0, range = 0, cur = 0, target = 0, idle = null, running = false;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  function measure() {
+    cw = cards[0].offsetWidth;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    step = cw + gap; rowW = row.clientWidth; pad = (rowW - cw) / 2; range = (cards.length - 1) * step;
+    track.style.paddingLeft = pad + "px";
+    track.style.width = pad + cards.length * step + pad + "px";
+    if (!inited && cw > 0) { inited = true; target = cur = 2 * step; }
+  }
+  function paint() {
+    cards.forEach((card, i) => {
+      const d = (pad + i * step + cw / 2 - cur - rowW / 2) / step;
+      const ad = Math.min(Math.abs(d), 3);
+      const c = Math.max(0, 1 - ad);
+      const scale = 1.14 - Math.min(ad, 2) * 0.1;
+      const ty = -26 * c;
+      const ry = clamp(-d * 10, -22, 22);
+      card.style.transform = `translateX(${-cur}px) translateY(${ty}px) rotateY(${ry}deg) scale(${scale})`;
+      card.style.setProperty("--c", c.toFixed(3));
+      card.style.zIndex = String(10 - Math.round(ad * 3));
+      card.style.opacity = String(ad > 2.4 ? 0.6 : 1);
+    });
+  }
+  function loop() {
+    if (!row.classList.contains("is-carousel")) { running = false; return; }
+    cur += (target - cur) * (still.matches ? 1 : 0.09);
+    if (Math.abs(target - cur) < 0.2) cur = target;
+    paint();
+    requestAnimationFrame(loop);
+  }
+  function snap() { target = clamp(Math.round(target / step) * step, 0, range); }
+  function enable() {
+    row.classList.add("is-carousel"); measure();
+    if (!running) { running = true; requestAnimationFrame(loop); }
+  }
+  function disable() {
+    row.classList.remove("is-carousel"); running = false;
+    track.style.paddingLeft = track.style.width = "";
+    cards.forEach((c) => { c.style.transform = c.style.opacity = c.style.zIndex = ""; c.style.removeProperty("--c"); });
+  }
+  function sync() { if (mq.matches) enable(); else disable(); }
+  row.addEventListener("pointermove", (e) => {
+    if (!row.classList.contains("is-carousel") || e.pointerType === "touch") return;
+    const r = row.getBoundingClientRect();
+    const t = clamp((e.clientX - r.left - r.width * 0.1) / (r.width * 0.8), 0, 1);
+    target = t * range;
+    clearTimeout(idle); idle = setTimeout(snap, 650);
+  });
+  row.addEventListener("pointerleave", () => { clearTimeout(idle); snap(); });
+  cards.forEach((card, i) => card.addEventListener("focus", () => { if (row.classList.contains("is-carousel")) target = i * step; }));
+  window.addEventListener("resize", () => { if (row.classList.contains("is-carousel")) { measure(); target = clamp(Math.round(target / step) * step, 0, range); cur = target; paint(); } });
+  mq.addEventListener("change", sync);
+  // Measure when the gallery tab opens (it is hidden at load).
+  new MutationObserver(() => { if (panel && !panel.hidden) { sync(); if (row.classList.contains("is-carousel")) { measure(); paint(); } } }).observe(panel || document.body, { attributes: true, attributeFilter: ["hidden"] });
+  sync();
+})();

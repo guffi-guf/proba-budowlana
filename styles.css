@@ -559,3 +559,16 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
   .contact-stage .leaf:nth-of-type(7) { left: 12.5%; top: 25%; }
 }
 @media (prefers-reduced-motion: reduce) { .csway { animation: none; } .contact-stage .leaf { display: none; } }
+
+/* Gallery: cursor-driven carousel, centre card raised (desktop with a mouse) */
+.glass-track { display: contents; }
+@media (min-width: 901px) {
+  .glass-row { --cw: clamp(190px, 17vw, 250px); overflow-x: auto; overflow-y: visible; justify-content: flex-start; gap: 24px; padding-inline: 24px; perspective: none; scrollbar-width: none; }
+  .glass-card { flex: 0 0 var(--cw); max-width: none; }
+  .glass-row.is-carousel { overflow-x: clip; overflow-y: visible; padding-inline: 0; gap: 0; }
+  .glass-row.is-carousel .glass-track { display: flex; align-items: center; gap: clamp(30px, 3.4vw, 50px); width: 100%; height: 100%; perspective: 1500px; }
+  .glass-row.is-carousel .glass-card { transition: none; will-change: transform; }
+  .glass-row.is-carousel .glass-glow { inset: 12px -8px -18px; opacity: calc(.32 + var(--c, 0) * .66); filter: blur(calc(24px + var(--c, 0) * 12px)) saturate(1.6); transition: none; }
+  .glass-row.is-carousel .glass-face { box-shadow: 0 calc(18px + var(--c, 0) * 22px) calc(34px + var(--c, 0) * 28px) rgba(0,0,0,calc(.3 + var(--c, 0) * .15)), inset 0 1px 0 rgba(255,255,255,.35); transition: none; }
+  .glass-row.is-carousel .glass-card:hover { transform: none; }
+}
