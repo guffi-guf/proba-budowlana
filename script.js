@@ -114,3 +114,21 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
   $("pd-quote").addEventListener("click", () => { dialog.close(); activateView("contact"); });
   dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
 })();
+
+// Opening status (London time)
+(() => {
+  const el = document.getElementById("open-status");
+  if (!el) return;
+  const OPEN = 9 * 60, CLOSE = 17 * 60, DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function update() {
+    const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date()).map((x) => [x.type, x.value]));
+    const day = DAYS.indexOf(p.weekday), mins = +p.hour * 60 + +p.minute;
+    const weekday = day >= 1 && day <= 5;
+    let text, open = false;
+    if (weekday && mins >= OPEN && mins < CLOSE) { open = true; text = "Open now · closes 17:00"; }
+    else if (weekday && mins < OPEN) text = "Closed now · opens today 09:00";
+    else { const next = day === 5 || day === 6 || day === 0 ? "Monday" : "tomorrow"; text = `Closed now · opens ${next} 09:00`; }
+    el.textContent = text; el.dataset.open = open; el.hidden = false;
+  }
+  update(); setInterval(update, 60000);
+})();

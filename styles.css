@@ -366,3 +366,12 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 .pd-tags span { padding: 6px 12px; border-radius: 999px; background: #e9eadf; font-size: 12px; font-weight: 650; }
 .pd-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 22px; }
 .pd-close { padding: 10px 4px; border: 0; background: none; color: var(--ink-soft); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+/* Opening hours */
+.loc-hours { display: flex; flex-direction: column; gap: 3px; margin: 0 0 14px; color: var(--ink-soft); font-size: 12px; line-height: 1.4; }
+.loc-hours b { display: inline-block; min-width: 64px; color: #20221f; font-weight: 650; }
+.open-status { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 4px; color: #20221f; font-size: 11px; font-weight: 650; }
+.open-status::before { width: 8px; height: 8px; border-radius: 50%; background: #9aa08f; content: ""; }
+.open-status[data-open="true"]::before { background: #7fa23a; box-shadow: 0 0 0 3px rgba(127,162,58,.22); }
+@media (min-width: 641px) and (max-width: 1199px) { .locations-copy .loc-hours { grid-column: 1; grid-row: 4; margin: 12px 0 0; } .locations-copy .button { grid-row: 4; } }
+@media (max-width: 640px) { .loc-hours { margin-bottom: 14px; font-size: 10px; } .loc-hours b { min-width: 54px; } .open-status { font-size: 10px; } }
