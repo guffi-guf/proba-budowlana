@@ -128,6 +128,7 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
     if (weekday && mins >= OPEN && mins < CLOSE) { open = true; text = "Open now"; }
     else if (weekday && mins < OPEN) text = "Closed now";
     else { const next = day === 5 || day === 6 || day === 0 ? "Monday" : "tomorrow"; text = "Closed now"; }
+    document.querySelectorAll('.hours-list > div').forEach((r) => { r.dataset.today = String(+r.dataset.day === day); });
     el.textContent = text; el.dataset.open = open; el.hidden = false;
   }
   update(); setInterval(update, 60000);
