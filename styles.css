@@ -375,3 +375,10 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 .open-status[data-open="true"]::before { background: #7fa23a; box-shadow: 0 0 0 3px rgba(127,162,58,.22); }
 @media (min-width: 641px) and (max-width: 1199px) { .locations-copy .loc-hours { grid-column: 1; grid-row: 4; margin: 12px 0 0; } .locations-copy .button { grid-row: 4; } }
 @media (max-width: 640px) { .loc-hours { margin-bottom: 14px; font-size: 10px; } .loc-hours b { min-width: 54px; } .open-status { font-size: 10px; } }
+
+/* Open/closed status in footer */
+.frame-footer .open-status { margin: 0; color: #fff; font-size: 9px; font-weight: 700; white-space: nowrap; }
+.frame-footer .open-status::before { width: 7px; height: 7px; background: #c9cdbf; }
+.frame-footer .open-status[data-open="true"]::before { background: #b6d95a; box-shadow: 0 0 0 3px rgba(182,217,90,.28); }
+.footer-end { display: flex; align-items: center; gap: 16px; }
+@media (max-width: 640px) { .frame-footer .open-status { font-size: 6px; gap: 4px; } .frame-footer .open-status::before { width: 5px; height: 5px; } .footer-end { gap: 6px; } .frame-footer > span:nth-child(2) { display: none; } }

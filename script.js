@@ -125,9 +125,9 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
     const day = DAYS.indexOf(p.weekday), mins = +p.hour * 60 + +p.minute;
     const weekday = day >= 1 && day <= 5;
     let text, open = false;
-    if (weekday && mins >= OPEN && mins < CLOSE) { open = true; text = "Open now · closes 17:00"; }
-    else if (weekday && mins < OPEN) text = "Closed now · opens today 09:00";
-    else { const next = day === 5 || day === 6 || day === 0 ? "Monday" : "tomorrow"; text = `Closed now · opens ${next} 09:00`; }
+    if (weekday && mins >= OPEN && mins < CLOSE) { open = true; text = "Open now"; }
+    else if (weekday && mins < OPEN) text = "Closed now";
+    else { const next = day === 5 || day === 6 || day === 0 ? "Monday" : "tomorrow"; text = "Closed now"; }
     el.textContent = text; el.dataset.open = open; el.hidden = false;
   }
   update(); setInterval(update, 60000);
