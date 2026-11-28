@@ -617,3 +617,8 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
   .glass-title { font-size: 12px; line-height: 1.15; }
   .glass-info { padding: 10px 8px; }
 }
+
+/* Locations: D&M pin centred in the visible part of the map (position set from script.js) */
+.map-pin { position: absolute; z-index: 1; width: 58px; height: auto; transform: translate(-50%, -100%); filter: drop-shadow(0 8px 10px rgba(10,15,11,.45)); pointer-events: none; left: 50%; top: 50%; }
+@media (max-width: 640px) { .map-pin { width: 46px; } }
+.map-pin-label { display: none; }

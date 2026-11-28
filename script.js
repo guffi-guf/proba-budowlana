@@ -246,3 +246,47 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
   }
   setTimeout(paint, 300);
 })();
+
+// Locations: centre the map (and the D&M pin) in the part of the panel that the cards do not cover.
+(() => {
+  const panel = document.getElementById("view-locations");
+  const card = panel && panel.querySelector(".location-card");
+  const frame = card && card.querySelector("iframe");
+  const pin = card && card.querySelector(".map-pin");
+  const copy = panel && panel.querySelector(".locations-copy");
+  const cap = card && card.querySelector(".map-caption");
+  if (!frame || !pin || !copy) return;
+  function place() {
+    const c = card.getBoundingClientRect();
+    if (!c.width) return;
+    const W = c.width, H = c.height, k = copy.getBoundingClientRect(), p = cap ? cap.getBoundingClientRect() : null;
+    let cx, cy;
+    if (k.width > W * 0.6) { // stacked layout (phone / tablet): map shows between the text card and the hours card
+      const top = k.bottom - c.top, bottom = p ? Math.min(H, p.top - c.top) : H;
+      cx = W / 2; cy = bottom - top > 90 ? (top + bottom) / 2 + 10 : top + 70;
+    } else { // desktop: map shows to the right of the text card
+      cx = (k.right - c.left + W) / 2; cy = H / 2 + 20;
+    }
+    const fw = Math.ceil(2 * Math.max(cx, W - cx)) + 4;
+    const fh = Math.ceil(2 * Math.max(cy + 180, H - cy)) + 4; // keeps the embed's own address card above the top edge
+    Object.assign(frame.style, { left: cx - fw / 2 + "px", top: cy - fh / 2 + "px", width: fw + "px", height: fh + "px" });
+    pin.style.left = cx + "px"; pin.style.top = cy + "px";
+  }
+  window.addEventListener("resize", place);
+  new MutationObserver(() => { if (!panel.hidden) { place(); setTimeout(place, 150); } }).observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+  place();
+})();
+
+// Hero video: some phones need an explicit play() call, or a first touch, before autoplay starts.
+(() => {
+  const v = document.querySelector(".hero-video");
+  if (!v || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  v.muted = true; v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("webkit-playsinline", "");
+  const go = () => { if (v.paused && !v.ended) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } };
+  const retryOnTouch = () => { go(); };
+  ["touchstart", "pointerdown", "scroll", "click"].forEach((e) => window.addEventListener(e, retryOnTouch, { once: true, passive: true }));
+  v.addEventListener("canplay", go);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) go(); });
+  window.addEventListener("pageshow", go);
+  go();
+})();
