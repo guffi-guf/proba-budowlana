@@ -435,3 +435,17 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 .about-image > span { right: auto; left: 34px; }
 .about-copy { left: auto; right: clamp(28px, 5.5vw, 82px); background: rgba(250,249,244,.46); border-color: rgba(255,255,255,.7); backdrop-filter: blur(18px) saturate(1.1); -webkit-backdrop-filter: blur(18px) saturate(1.1); box-shadow: 0 18px 60px rgba(27,32,24,.1); }
 @media (max-width: 640px) { .about-copy { left: 14px; right: auto; background: rgba(250,249,244,.58); } .about-image > span { left: 12px; } .about-image img { object-position: 30% 22%; } }
+
+/* Shared translucent glass for the white cards */
+.contact-form, .locations-copy, .map-caption, .service-card {
+  background: rgba(250,249,244,.46);
+  border-color: rgba(255,255,255,.7);
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+}
+.contact-form input, .contact-form select, .contact-form textarea { background: rgba(255,255,255,.7); }
+@media (max-width: 640px) { .contact-form, .locations-copy, .map-caption, .service-card { background: rgba(250,249,244,.58); } }
+/* Cards over dark photos need a bit more body for readable text */
+.service-card { background: rgba(250,249,244,.64); }
+.contact-form { background: rgba(250,249,244,.6); }
+.service-card p, .service-card .service-meta { color: #3f433b; }
