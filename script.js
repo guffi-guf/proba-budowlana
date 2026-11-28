@@ -174,6 +174,7 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
   }
   function init() {
     map = L.map(el, { zoomControl: false, scrollWheelZoom: false, attributionControl: true, zoomSnap: 0.25 });
+    map.setView(PIN, 18);
     L.tileLayer("https://{s}.basemaps.cartocdn.com/rasterTiles/voyager/{z}/{x}/{y}{r}.png", { subdomains: "abcd", maxZoom: 20, attribution: "&copy; OpenStreetMap contributors &copy; CARTO" }).addTo(map);
     L.marker(PIN, { keyboard: false, zIndexOffset: 500, icon: L.divIcon({ className: "", iconSize: [44, 56], iconAnchor: [22, 55], html: '<div class="dm-pin"><span class="dm-pin-pulse"></span>' + pinSvg + '<span class="dm-pin-label">D&amp;M Renovation</span></div>' }) }).addTo(map);
     car = L.marker(at(0).pos, { keyboard: false, interactive: false, icon: L.divIcon({ className: "", iconSize: [16, 30], iconAnchor: [8, 15], html: '<div class="dm-car">' + carSvg + "</div>" }) }).addTo(map);
