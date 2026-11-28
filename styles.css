@@ -402,17 +402,10 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
 .frame-footer .open-status[data-open="true"]::before { background: #9ccc3c; box-shadow: 0 0 0 3px rgba(156,204,60,.35); }
 .frame-footer .open-status { display: inline-flex; align-items: center; gap: 7px; }
 
-/* About: welcome copy */
-.about-copy { top: 108px; right: clamp(24px, 4vw, 60px); bottom: 62px; left: clamp(24px, 4vw, 60px); width: auto; display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(24px, 4vw, 56px); align-content: start; overflow-y: auto; transform: none; padding: clamp(24px, 3vw, 42px); background: rgba(250,249,244,.93); }
-.about-copy h1 { margin: 0 0 12px; font-size: clamp(30px, 3.6vw, 52px); line-height: 1.05; }
-.about-copy .about-lead { margin-bottom: 16px; color: #20221f; font-size: 15px; font-weight: 600; }
-.about-copy p { max-width: 62ch; }
-.about-copy h2 { margin: 0 0 12px; color: #20221f; font-size: 15px; font-weight: 650; letter-spacing: -.01em; }
-.service-checks { display: grid; gap: 7px; margin: 0 0 16px; padding: 0; list-style: none; }
-.service-checks li { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 10px; background: #eceee2; color: #20221f; font-size: 12.5px; font-weight: 600; }
-.service-checks li::before { flex: none; width: 7px; height: 7px; border-radius: 50%; background: #7fa23a; content: ""; }
-@media (max-width: 900px) { .about-copy { grid-template-columns: 1fr; top: 112px; bottom: 54px; } .about-copy > .about-side { padding-top: 6px; } }
-@media (max-width: 640px) { .about-copy { top: 112px; left: 12px; right: 12px; bottom: 48px; padding: 18px; border-bottom-right-radius: 36px; } .about-copy h1 { font-size: 30px; } .about-copy p { font-size: 11px; line-height: 1.55; } .about-copy .about-lead { font-size: 12.5px; } .service-checks li { padding: 6px 10px; font-size: 10.5px; } .about-copy h2 { font-size: 12.5px; } }
+/* About: welcome copy sizing */
+.about-copy h1 { font-size: clamp(40px, 4.1vw, 62px); }
+.about-copy .approach-list { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+@media (max-width: 640px) { .about-copy h1 { font-size: clamp(34px, 9.4vw, 44px); } }
 
 /* Project dialog: photo carousel */
 .pd-media { position: relative; }
