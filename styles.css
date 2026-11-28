@@ -572,14 +572,3 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
   .glass-row.is-carousel .glass-face { box-shadow: 0 calc(18px + var(--c, 0) * 22px) calc(34px + var(--c, 0) * 28px) rgba(0,0,0,calc(.3 + var(--c, 0) * .15)), inset 0 1px 0 rgba(255,255,255,.35); transition: none; }
   .glass-row.is-carousel .glass-card:hover { transform: none; }
 }
-
-/* Gallery: pastel wardrobe sketch background, dark ink text */
-.gallery-panel { color: var(--ink); }
-.gallery-panel::before { background-image: url("assets/gallery-sketch.jpg"); background-color: #f3ede2; background-position: center; }
-.gallery-panel::after { background: none; }
-.gallery-panel h1 { color: var(--ink); }
-.gallery-panel h1 em { color: #6f7d48; }
-.gallery-panel .eyebrow, .gallery-heading > p { color: #4d5149; }
-.site-frame[data-view="gallery"] .brand-button img { filter: none; }
-.gallery-panel::after { background: linear-gradient(180deg, rgba(243,237,226,.88) 0, rgba(243,237,226,.6) 24%, rgba(243,237,226,0) 40%); }
-.gallery-heading > p small, .gallery-panel small { color: #6a6f63; }
