@@ -187,7 +187,8 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
   }
   function loop() {
     if (!row.classList.contains("is-carousel")) { running = false; return; }
-    cur += (target - cur) * (still.matches ? 1 : 0.09);
+    if (edge) target = clamp(target + edge * 3.2, 0, range);
+    cur += (target - cur) * (still.matches ? 1 : 0.05);
     if (Math.abs(target - cur) < 0.2) cur = target;
     paint();
     requestAnimationFrame(loop);
@@ -203,14 +204,17 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
     cards.forEach((c) => { c.style.transform = c.style.opacity = c.style.zIndex = ""; c.style.removeProperty("--c"); });
   }
   function sync() { if (mq.matches) enable(); else disable(); }
+  // Relative, slow control: the row moves by a fraction of the cursor travel; near the edges it drifts gently.
+  let lastX = null, edge = 0;
   row.addEventListener("pointermove", (e) => {
     if (!row.classList.contains("is-carousel") || e.pointerType === "touch") return;
-    const r = row.getBoundingClientRect();
-    const t = clamp((e.clientX - r.left - r.width * 0.1) / (r.width * 0.8), 0, 1);
-    target = t * range;
-    clearTimeout(idle); idle = setTimeout(snap, 650);
+    if (lastX !== null) target = clamp(target + (e.clientX - lastX) * 0.55, 0, range);
+    lastX = e.clientX;
+    const r = row.getBoundingClientRect(), p = (e.clientX - r.left) / r.width;
+    edge = p < 0.12 ? -(0.12 - p) / 0.12 : p > 0.88 ? (p - 0.88) / 0.12 : 0;
+    clearTimeout(idle); idle = setTimeout(() => { edge = 0; snap(); }, 700);
   });
-  row.addEventListener("pointerleave", () => { clearTimeout(idle); snap(); });
+  row.addEventListener("pointerleave", () => { clearTimeout(idle); lastX = null; edge = 0; snap(); });
   cards.forEach((card, i) => card.addEventListener("focus", () => { if (row.classList.contains("is-carousel")) target = i * step; }));
   window.addEventListener("resize", () => { if (row.classList.contains("is-carousel")) { measure(); target = clamp(Math.round(target / step) * step, 0, range); cur = target; paint(); } });
   mq.addEventListener("change", sync);
