@@ -218,3 +218,31 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
   new MutationObserver(() => { if (panel && !panel.hidden) { sync(); if (row.classList.contains("is-carousel")) { measure(); paint(); } } }).observe(panel || document.body, { attributes: true, attributeFilter: ["hidden"] });
   sync();
 })();
+
+// Gallery on touch screens: native swipe with snap; the centre card is enlarged.
+(() => {
+  const row = document.querySelector(".glass-row");
+  if (!row) return;
+  const cards = [...row.querySelectorAll(".glass-card")];
+  const touchMode = () => !row.classList.contains("is-carousel");
+  function paint() {
+    if (!touchMode()) return;
+    const rr = row.getBoundingClientRect(), mid = rr.left + rr.width / 2;
+    cards.forEach((card) => {
+      const r = card.getBoundingClientRect();
+      if (!r.width) return;
+      const d = Math.min(1.5, Math.abs((r.left + r.width / 2 - mid) / r.width));
+      const c = Math.max(0, 1 - d);
+      card.style.transform = `translateY(${(-10 * c).toFixed(1)}px) scale(${(0.92 + 0.16 * c).toFixed(3)})`;
+      card.style.setProperty("--c", c.toFixed(3));
+    });
+  }
+  let ticking = false;
+  row.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; paint(); }); } }, { passive: true });
+  window.addEventListener("resize", paint);
+  const panel = document.getElementById("view-gallery");
+  if (panel) {
+    new MutationObserver(() => { if (!panel.hidden) { const cw = cards[1]; if (touchMode() && cw && !row.dataset.centred) { row.dataset.centred = "1"; row.scrollLeft = cards[2].offsetLeft - (row.clientWidth - cards[2].offsetWidth) / 2; } setTimeout(paint, 50); } }).observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+  }
+  setTimeout(paint, 300);
+})();

@@ -601,3 +601,19 @@ h1 em { color: #6f7d48; font-family: var(--serif); font-weight: 400; letter-spac
   .glass-row.is-carousel .glass-track { gap: var(--gp); }
 }
 @media (min-width: 901px) { .glass-row { box-sizing: border-box; width: calc(3 * var(--cw) + 2 * var(--gp) + 16px); margin-left: -8px; margin-right: auto; } }
+
+/* Mobile: Services shows big photos with only the title; Gallery shows 3 slimmer cards, title only */
+@media (max-width: 640px) {
+  .service-card > img { height: 70%; flex: 0 0 70%; }
+  .service-copy { padding: 5px 8px; justify-content: center; }
+  .service-copy p, .service-number { display: none; }
+  .service-copy h2 { margin: 0; font-size: clamp(11px, 3.2vw, 13px); }
+}
+@media (max-width: 900px) {
+  .glass-row { --mw: calc((100vw - 24px - 20px) / 3); gap: 8px; padding-inline: calc(50% - var(--mw) / 2); height: calc(100% - 100px); align-items: center; }
+  .glass-card { flex: 0 0 var(--mw); height: min(100%, 300px); will-change: transform; }
+  .glass-desc, .glass-tags, .glass-go { display: none; }
+  .glass-foot { display: none; }
+  .glass-title { font-size: 12px; line-height: 1.15; }
+  .glass-info { padding: 10px 8px; }
+}
