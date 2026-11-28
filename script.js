@@ -306,6 +306,8 @@ if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) 
     let cx, cy;
     if (k.width > W * 0.6) { const top = k.bottom - c.top, bottom = p ? Math.min(H, p.top - c.top) : H; cx = W / 2; cy = bottom - top > 90 ? (top + bottom) / 2 + 10 : top + 70; }
     else { cx = (k.right - c.left + W) / 2; cy = H / 2 + 20; }
+    const attr = el.querySelector(".leaflet-bottom.leaflet-right"); // keep the attribution visible above the hours card
+    if (attr) attr.style.marginBottom = (p ? Math.max(0, c.bottom - p.top + 4) : 0) + "px";
     map.setView(HQ, 18, { animate: false });
     const pt = map.latLngToContainerPoint(HQ);
     map.panBy([pt.x - cx, pt.y - cy], { animate: false });
